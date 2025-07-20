@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { sendTapEvent } = require('./producer');
 require('./consumer'); // start consumer
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/tap', async (req, res) => {
   const { userId } = req.body;
